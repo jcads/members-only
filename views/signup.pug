@@ -1,28 +1,26 @@
 extends layout
 
 block content
+    h1=title
+    form(method="POST" action="")
+        div.form-group
+            label(for="firstName") First name:
+            input#firstname.form-control(type="text" name="firstName" placeholder="John" required="true")
+        div.form-group
+            label(for="lastName") Last name:
+            input#lastname.form-control(type="text" name="lastName" placeholder="Doe" required="true")
+        div.form-group
+            label(for="username") Username:
+            input#username.form-control(type="text" name="username" required="true")
+        div.form-group
+            label(for="password") Password:
+            input#password.form-control(type="password" name="password" required="true")
+        div.form-group
+            label(for="confirmPassword") Confirm Password:
+            input#confirmPassword.form-control(type="password" name="confirmPassword" required="true")
+        button.btn.btn-success(type="submit") Sign Up
 
-    section.container
-        h1=title
-        form(method="POST" action="")
-            div.form-group
-                label(for="firstName") First name:
-                input#firstname.form-control(type="text" name="firstName" placeholder="John" required="true")
-            div.form-group
-                label(for="lastName") Last name:
-                input#lastname.form-control(type="text" name="lastName" placeholder="Doe" required="true")
-            div.form-group
-                label(for="username") Username:
-                input#username.form-control(type="text" name="username" required="true")
-            div.form-group
-                label(for="password") Password:
-                input#password.form-control(type="password" name="password" required="true")
-            div.form-group
-                label(for="confirmPassword") Confirm Password:
-                input#confirmPassword.form-control(type="password" name="confirmPassword" required="true")
-            button.btn.btn-success(type="submit") Sign Up
-
-    if errors 
-        ul
-          for error in errors
-            li!= error.msg
+if errors 
+    ul
+      for error in errors
+        li!= error.msg

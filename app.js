@@ -30,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const User = require("./models/user");
 
+
 // passport.js
 passport.use(
   new LocalStrategy((username, password, done) => {
@@ -70,15 +71,23 @@ passport.deserializeUser(function(id, done) {
 //locals
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
-    console.log(res.locals.currentUser);
+    //console.log(res.locals.currentUser);
     next();
 });
 
 // routers
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const homeRouter = require("./routes/home");
 
-app.use('/clubhouse', indexRouter);
+//// Auth
+//app.use((req, res, next) => {
+//    if (req.isAuthenticated()) return next();
+//    res.redirect("/clubhouse/login");
+//});
+
+app.use('/', indexRouter);
+app.use('/home', homeRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

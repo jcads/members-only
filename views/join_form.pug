@@ -1,0 +1,8 @@
+extends layout 
+
+block content
+    form(method="POST" action="/home/join")     
+        div.form-group
+            label(for="secretCode") Enter secret code:
+            input#secretCode.form-control(type="text" name="secretCode" required="true")
+        button.btn.btn-success(type="submit") Join Kagaguhan

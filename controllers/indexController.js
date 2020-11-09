@@ -3,8 +3,9 @@ const bcrypt = require("bcryptjs");
 const {body, validationResult, check} = require("express-validator");
 const passport = require("passport");
 
-exports.index = function(req, res, next) {
-    res.redirect("/clubhouse/signup");
+exports.login_get = function(req, res, next) {
+    console.log("login")
+    res.render("login", {title: "Log In"});
 };
 
 exports.signUp = [
@@ -31,21 +32,16 @@ exports.signUp = [
                     });
                     user.save(err => {
                         if (err) return next(err)
-                        res.redirect("/clubhouse/login");
+                        res.redirect("/login");
                     });
                 }
             });
         }
 }];
 
-exports.home_get = function(req, res, next) {
-    if (req.isAuthenticated()) {
-       res.render("home");
-    }
-    else res.redirect("/clubhouse/login");
-}; 
 
 exports.logout = function(req, res, next) {
     req.logout();
-    res.redirect("/clubhouse");
+    res.redirect("/");
 }
+
