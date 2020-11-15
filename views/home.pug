@@ -1,6 +1,23 @@
 extends layout 
 
 block content
-    p
-        a(href="/home/join") Join 
-        |   to see photos and member perks.
+
+    if currentUser.membershipStat === "Member"
+        p
+            a(href="/clubhouse/post/create") Post
+            |   a message
+    else
+        p
+            a(href="/home/join") Join 
+            |   to see photos and member perks.
+
+    section.posts
+        for post in posts
+            div.post-content
+                p.title
+                    a(href=`/clubhouse/post/${post._id}`) #{post.title}
+                small Posted on #{post.date} by
+                   a(href=`/clubhouse/user/${post.author._id}`) #{post.author.fullname}
+                p.postBody #{post.postBody}
+                    
+

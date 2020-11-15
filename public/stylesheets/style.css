@@ -1,9 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+.container {
+    width: 50%;
+}
+
 a {
     text-decoration: none;
+}
+
+p {
+    margin: 0;
 }
 
 .navbar {
@@ -18,4 +30,20 @@ form {
 
 small a {
     margin-left: 1rem;
+}
+
+textarea.form-control {
+    resize: none;
+    height: 10rem;
+}
+
+.title a {
+    font-size: 1.5rem;
+    color: black;
+}
+
+.post-content {
+    margin: 0.5rem 0;
+    padding: 1rem;
+    border: 1px gray solid;
 }
