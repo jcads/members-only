@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1=post.title
+    small Posted on #{post.date} by
+       a(href=`/clubhouse/user/${post.author._id}`) #{post.author.fullname}
+    p #{post.postBody}
+
+    if post.author._id.equals(currentUser._id)
+        a.btn.btn-warning.btn-sm(href=`${post.url}/edit`) Edit
+        form(method="POST" action=`${post.url}/delete`)
+            button.btn.btn-sm.btn-danger(type="submit") Delete
