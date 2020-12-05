@@ -1,8 +1,9 @@
 extends layout 
 
 block content
-
-    if currentUser.membershipStat === "Member"
+    - const member = currentUser.membershipStat === "Member"
+ 
+    if member      
         p
             a(href="/clubhouse/post/create") Post
             |   a message
@@ -16,8 +17,11 @@ block content
             div.post-content
                 p.title
                     a(href=`/clubhouse/post/${post._id}`) #{post.title}
-                small Posted on #{post.date} by
-                   a(href=`/clubhouse/user/${post.author._id}`) #{post.author.fullname}
+                if member
+                    small Posted on #{post.date} by
+                       a(href=`/clubhouse/user/${post.author._id}`) #{post.author.fullname}
+                else
+                    small Posted by anonymous
                 p.postBody #{post.postBody}
                     
 

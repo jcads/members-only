@@ -16,14 +16,7 @@ router.post("/signup", indexController.signUp);
 
 router.get("/login", indexController.login_get);
 
-router.post(
-    "/login", 
-    passport.authenticate("local", {
-        successRedirect: "/home",
-        failureRedirect: "/login"
-    })
-);
-
+router.post("/login", indexController.login_post);
 
 router.post("/logout", indexController.logout);
 

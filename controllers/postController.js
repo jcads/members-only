@@ -4,7 +4,7 @@ const {body, validationResult, check} = require("express-validator");
 const Post = require("../models/post");
 
 exports.createPost_get = function(req, res, next) {
-    res.render("createPost_form", {title: "Create Post"});
+    res.render("createPost_form", {title: "Create Post", values: null});
 }
 
 exports.createPost_post = [
@@ -43,7 +43,6 @@ exports.createPost_post = [
 exports.viewPost_get = function(req, res, next) {
     Post.findById(req.params.id).populate("author").exec((err, post) => {
         if (err) return next(err);
-        console.log(post.author._id.equals(res.locals.currentUser._id));
         res.render("post_view.pug", {title: post.title, post: post});
     });
 };
@@ -80,7 +79,8 @@ exports.editPost_post = [
 ]
 
 exports.deletePost = function(req, res, next) {
-    console.log("delete post");
+    Post.deleteOne({ _id: req.params.id}, err => {
+        if (err) return next(err);
+    });
     res.redirect("/home");
-    return;
 }

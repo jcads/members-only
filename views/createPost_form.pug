@@ -8,7 +8,7 @@ block content
             label(for="title") Title:
             input#title.form-control(type="text" name="title" placeholder="Bisag unsa ah" required="true" value=(values ? values.title : ''))
         div.form-group
-            textarea#postBody.form-control(type="text" name="postBody" placeholder="Post goes here....") #{values.postBody}
+            textarea#postBody.form-control(type="text" name="postBody" placeholder="Post goes here....") #{(values ? values.postBody : "")}
         button.btn.btn-primary(type="submit")=(values ? "Edit" : "Post")
 
     if errors

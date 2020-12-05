@@ -8,7 +8,7 @@ const UserSchema = new Schema({
     lastName: stringDocumentDefault, 
     username: stringDocumentDefault, 
     password: String,
-    post: [{type: "ObjectId", ref: "Post"}],
+    posts: [{type: "ObjectId", ref: "Post"}],
     membershipStat: {
         type: String,
         enum: ["Member", "Not member"],

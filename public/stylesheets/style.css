@@ -24,10 +24,6 @@ p {
     padding-right: 2rem;
 }
 
-form {
-    width: 60%;
-}
-
 small a {
     margin-left: 1rem;
 }
@@ -46,4 +42,20 @@ textarea.form-control {
     margin: 0.5rem 0;
     padding: 1rem;
     border: 1px gray solid;
+}
+
+#adminToggle {
+    display: block;
+    margin-bottom: 1rem;
+    color: lightgray;
+}
+
+#adminToggle:hover {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
+
+.admin-fixed {
+    padding: .5rem;
 }

@@ -14,7 +14,7 @@ var app = express();
 //Set up mongoose connection
 var mongoose = require('mongoose');
 var mongoDB = process.env.MONGODB_URI;
-mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
+mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true, useFindAndModify: false});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
@@ -37,7 +37,7 @@ passport.use(
     User.findOne({ username: username }, (err, user) => {
       if (err) {
         return done(err);
-      };
+      }
       if (!user) {
         return done(null, false);
       }
@@ -72,6 +72,7 @@ passport.deserializeUser(function(id, done) {
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     //console.log(res.locals.currentUser);
+
     next();
 });
 
@@ -79,15 +80,19 @@ app.use((req, res, next) => {
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const homeRouter = require("./routes/home");
+const postRouter = require("./routes/post");
 
-//// Auth
-//app.use((req, res, next) => {
-//    if (req.isAuthenticated()) return next();
-//    res.redirect("/clubhouse/login");
-//});
 
 app.use('/', indexRouter);
+
+// Auth
+app.use((req, res, next) => {
+    if (req.isAuthenticated()) return next();
+    res.redirect("/login");
+});
+
 app.use('/home', homeRouter);
+app.use("/clubhouse", postRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

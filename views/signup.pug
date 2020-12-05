@@ -20,7 +20,7 @@ block content
             input#confirmPassword.form-control(type="password" name="confirmPassword" required="true")
         button.btn.btn-success(type="submit") Sign Up
 
-if errors 
-    ul
-      for error in errors
-        li!= error.msg
+    if errors 
+        ul
+          for error in errors
+            li!= error.msg
