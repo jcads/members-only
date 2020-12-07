@@ -12,3 +12,6 @@ npm install
 ```
 3. Rename `.env_example` to `.env`
 4. Setup your database URI and secrets in `.env`
+
+## Live App
+[Here](https://kagaguhan.herokuapp.com/signup)
